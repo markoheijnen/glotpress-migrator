@@ -16,11 +16,17 @@ class Connector {
 	}
 
 	function show_register_link() {
+		$element = 'strong';
+
+		if ( class_exists('GP_Bootstrap_Theme') ) {
+			$element = 'li';
+		}
+
 		if ( ! GP::$user->logged_in() ) {
 			if( $this->permalink )
-				echo '<strong><a href="' . $this->wordpress_url . 'register/">' . __('Register') . '</a></strong>';
+				echo '<' . $element . '><a href="' . $this->wordpress_url . 'register/">' . __('Register') . '</a></' . $element . '>';
 			else
-				echo '<strong><a href="' . $this->wordpress_url . '?gp_action=register">' . __('Register') . '</a></strong>';
+				echo '<' . $element . '><a href="' . $this->wordpress_url . '?gp_action=register">' . __('Register') . '</a></' . $element . '>';
 		}
 	}
 }
